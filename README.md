@@ -1,7 +1,7 @@
 # encryption
 简单的封装了JAVA的RSA和AES加密,RSA和AES最常用的两个加密算法,直接调用加密和解密方法即可。非常简单<br>
 ## RSA
-```kt
+```kotlin
 val keyPairGen = RSAEncrypt.genKeyPair()
     val privateKey = RSAEncrypt.strToPrivateKey(keyPairGen!![0])
     val publicKey = RSAEncrypt.strToPublicKey(keyPairGen[1])

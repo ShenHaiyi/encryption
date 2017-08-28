@@ -1,7 +1,39 @@
 # encryption
 简单的封装了JAVA的RSA和AES加密,RSA和AES最常用的两个加密算法,直接调用加密和解密方法即可。非常简单<br>
 ## RSA
+```kt
+val keyPairGen = RSAEncrypt.genKeyPair()
+    val privateKey = RSAEncrypt.strToPrivateKey(keyPairGen!![0])
+    val publicKey = RSAEncrypt.strToPublicKey(keyPairGen[1])
+
+    println("--------------私钥加密公钥解密过程-------------------")
+    var data = "私钥加密公钥解密过程"
+    var encrypt = RSAEncrypt.encrypt(privateKey, data.toByteArray())
+    var decrypt = RSAEncrypt.decrypt(publicKey, encrypt!!)
+    println("原文：$data")
+    println("密文：${Base64.encode(encrypt)}")
+    println("解密：${String(decrypt!!)}")
+    println()
+
+    println("--------------公钥加密私钥解密过程-------------------")
+    data = "公钥加密私钥解密过程"
+    encrypt = RSAEncrypt.encrypt(publicKey, data.toByteArray())
+    decrypt = RSAEncrypt.decrypt(privateKey, encrypt!!)
+    println("原文：$data")
+    println("密文：${Base64.encode(encrypt)}")
+    println("解密：${String(decrypt!!)}")
+    println()
+
+    println("--------------私钥签名公钥验签过程-------------------")
+    data = "私钥签名公钥验签过程"
+    var sign = RSASignature.sign(data, keyPairGen[0])
+    println("原文：$data")
+    println("签名串：$sign")
+    println("验签结果：${RSASignature.doCheck(data, sign!!, keyPairGen[1])}")
+    println()
+```
 ```java
+
         String[] key = RSA.getKey();
         String data;
 
